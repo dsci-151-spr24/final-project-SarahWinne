@@ -9,21 +9,25 @@ library(broom)
 
 ## 1. Introduction
 
-The data is “Project Gutenberg creative literature life circumstance &
-work metadata collection”(Langer, Lars; 2023), found in the Harvard
-Dataverse. Each case is a unique book found in the Project Gutenberg
-digital library. There are 13493 cases in this dataset. The variables
-are the ID of the book, how many unique terms for organisms there are in
-each book (normalized to 10,000 tokens), the size of the vocabulary of
-each book, authors age at publication, the year of publication (or
-conception, if earlier), what type of literature the book is, gender of
-the author, whether or not the author is a parent, what the authors
-highest form of education was, whether the auhtor’s occupation was
-connected to biodiversity, where the author lived most of their lives,
-how many reigons the author reached in their life, if the author’s main
-residence was in a village, town, or city, then booleans for genre
-tags(satire, historical, social, children, adventure, mystery, crime,
-sci-fi, romance, fantasy, biography, travellogue). This is a total of 25
+Has the average lexical richness (variety of vocabulary) changed over
+time?
+
+The data I’m using to answer this question is “Project Gutenberg
+creative literature life circumstance & work metadata
+collection”(Langer, Lars; 2023), found in the Harvard Dataverse. Each
+case is a unique book found in the Project Gutenberg digital library.
+There are 13493 cases in this dataset. The variables are the ID of the
+book, how many unique terms for organisms there are in each book
+(normalized to 10,000 tokens), the size of the vocabulary of each book,
+authors age at publication, the year of publication (or conception, if
+earlier), what type of literature the book is, gender of the author,
+whether or not the author is a parent, what the authors highest form of
+education was, whether the auhtor’s occupation was connected to
+biodiversity, where the author lived most of their lives, how many
+reigons the author reached in their life, if the author’s main residence
+was in a village, town, or city, then booleans for genre tags(satire,
+historical, social, children, adventure, mystery, crime, sci-fi,
+romance, fantasy, biography, travellogue). This is a total of 25
 variables.
 
 ## 2. Data
@@ -57,3 +61,14 @@ variables.
     ## $ genre_travellogue       <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS…
 
 ## 3. Data analysis plan
+
+I will be using the year of publication to predict the lexical richness.
+
+I will likely be comparing by year, or decade if that ends up working
+better.
+
+I expect lexical richness to have dropped in general, but there’s a good
+chance it may have only dropped in certain genre groups or not at all.
+If it hasn’t dropped, I will spend some more time comparing between
+genre groups or involving their highest level of education, as those
+seem most likely to affect the lexical richness.
