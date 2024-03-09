@@ -1,6 +1,6 @@
 ---
 title: Project title
-author: by your name
+author: by Sarah Winne
 output: github_document
 ---
 

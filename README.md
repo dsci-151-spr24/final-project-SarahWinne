@@ -1,6 +1,6 @@
 Project title
 ================
-by your name
+by Sarah Winne
 
 ## Summary
 
