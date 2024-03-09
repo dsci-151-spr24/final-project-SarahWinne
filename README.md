@@ -41,4 +41,4 @@ source.
 Langer, Lars, 2023, “Project Gutenberg creative literature life
 circumstance & work metadata collection”,
 <https://doi.org/10.7910/DVN/7POSNW>, Harvard Dataverse, V2,
-UNF:6:WFz+c8P5K2WApDFQRc+RNw== \[fileUNF\]
+UNF:6:WFz+c8P5K2WApDFQRc+RNw== \[fileUNF\], Accessed March 9, 2024
