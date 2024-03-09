@@ -1,6 +1,6 @@
 ---
 title: "Project proposal"
-author: "Your name"
+author: "Sarah Winne"
 output: github_document
 ---
 
@@ -12,6 +12,8 @@ library(broom)
 ## 1. Introduction
 
 
+The data is "Project Gutenberg creative literature life circumstance & work metadata collection"(Langer, Lars; 2023), found in the Harvard Dataverse. 
+Each case is a unique book found in the Project Gutenberg digital library. The variables are the ID of the book, how many unique terms for organisms there are in each book (normalized to 10,000 tokens), the size of the vocabulary of each book, authors age at publication, the year of publication (or conception, if earlier), what type of literature the book is, gender of the author, whether or not the author is a parent, what the authors highest form of education was, whether the auhtor's occupation was connected to biodiversity, where the author lived most of their lives, how many reigons the author reached in their life, if the author's main residence was in a village, town, or city, then booleans for genre tags(satire, historical, social, children, adventure, mystery, crime, sci-fi, romance, fantasy, biography, travellogue). 
 
 ## 2. Data
 
