@@ -28,12 +28,17 @@ My presentation can be found [here](presentation/presentation.html).
 
 ## Data
 
-Include a citation for your data here. See
-<http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840> for guidance
-on proper citation for datasets. If you got your data off the web, make
-sure to note the retrieval date.
+Langer, Lars, 2023, “Project Gutenberg creative literature life
+circumstance & work metadata collection”,
+<https://doi.org/10.7910/DVN/7POSNW>, Harvard Dataverse, V2,
+UNF:6:WFz+c8P5K2WApDFQRc+RNw== \[fileUNF\], Accessed March 9, 2024
 
 ## References
 
 List any references here. You should, at a minimum, list your data
 source.
+
+Langer, Lars, 2023, “Project Gutenberg creative literature life
+circumstance & work metadata collection”,
+<https://doi.org/10.7910/DVN/7POSNW>, Harvard Dataverse, V2,
+UNF:6:WFz+c8P5K2WApDFQRc+RNw== \[fileUNF\]
