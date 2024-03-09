@@ -5,6 +5,8 @@ Place data file(s) in this folder.
 Then, include codebooks (variables, and their descriptions) for your data file(s)
 using the following format.
 
+There are 13493 observations and 25 variables.
+
 ## ProjectGutenbergMetadata
 
 - `Work_ID`: Project Gutenberg ID of the work in question for reference
