@@ -6,21 +6,20 @@ output: github_document
 
 ## Summary
 
+A point to be highlighted before beginning, is that lexical richness, or variety of vocabulary, does not directly correlate to a good quality book. There are many well written books with a simple vocabulary, as well as ones with large vocabularies. 
+
+Basically, the form of literature, whether the author was a parent, and what decade or century they published in were the most helpful for predicting lexical richness. Depending on the forms, lexical richness went up a few hundread of varying amounts. If they had no children, it was estimated to go down about 17.39, and for every increase in decade, it went down by about 1.26. So while there aren't incredibly significant negative changes, over time lexical richness did go down. The decrease is more apparent if you focus on the 19th-20th centuries, as during the 17th-18th lexical richness stays pretty constant. There is the fact that the dataset from Project Gutenberg has fewer books from that time period, as compared to the 19th-20th centuries. 
+
+While the average and median lexical richness do decrease more over the 19th-20th centuries, there is also a wider range of lexical richnesses in both the positive and negative directions. 
+
+
+
 Write-up of your project and findings go here. 
 Think of this as the text of your presentation. 
-The length should be roughly 5 minutes when read out loud.
-Although pacing varies, a 5-minute speech is roughly 750 words. 
-To use the word count addin, select the text you want to count the words of (probably this is the 
-Summary section of this document, go to Addins, and select the `Word count` addin).
-This addin counts words using two different algorithms, but the results should be similar and as long as you're in the ballpark of 750 words, you're good! 
-The addin will ignore code chunks and only count the words in prose.
-
-You can also load your data here and present any analysis results / plots, but I strongly urge you to keep that to a minimum (maybe only the most important graphic, if you have one you can choose). 
-And make sure to hide your code with  `echo = FALSE` unless the point you are trying to make is about the code itself.
-Your results with proper output and graphics go in your presentation, this space is for a brief summary of your project.
+Roughly 750 words. As long as you're in the ballpark of 750 words, you're good! Ignore code chunks and only count the words in prose. If using code, only one most important. 
 
 ```{r load-data, echo = FALSE}
-gutenberg <- read_csv("/cloud/project/data/ProjectGutenbergMetadata.csv")
+#gutenberg <- read_csv("/cloud/project/data/ProjectGutenbergMetadata.csv")
 ```
 
 ## Presentation
@@ -32,8 +31,6 @@ My presentation can be found [here](presentation/presentation.html).
 Langer, Lars, 2023, "Project Gutenberg creative literature life circumstance & work metadata collection", https://doi.org/10.7910/DVN/7POSNW, Harvard Dataverse, V2, UNF:6:WFz+c8P5K2WApDFQRc+RNw== [fileUNF], Accessed March 9, 2024
 
 ## References
-
-List any references here. You should, at a minimum, list your data source.
 
 Langer, Lars, 2023, "Project Gutenberg creative literature life circumstance & work metadata collection", https://doi.org/10.7910/DVN/7POSNW, Harvard Dataverse, V2, UNF:6:WFz+c8P5K2WApDFQRc+RNw== [fileUNF], Accessed March 9, 2024
 

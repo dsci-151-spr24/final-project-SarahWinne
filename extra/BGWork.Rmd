@@ -69,6 +69,22 @@ gutenberg %>%
 
 ```{r}
 gutenberg %>%
+  mutate(Year_Publication = if_else(Year_Publication>=1800, Year_Publication, NA)) %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE)
+```
+
+```{r}
+gutenberg %>%
+  mutate(Year_Publication = if_else(Year_Publication<=1800, Year_Publication, NA)) %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE)
+```
+
+```{r}
+gutenberg %>%
   ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
   geom_point() +
   geom_smooth(color = "black", se = FALSE)

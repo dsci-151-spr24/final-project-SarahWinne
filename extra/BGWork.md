@@ -206,6 +206,42 @@ gutenberg %>%
 
 ``` r
 gutenberg %>%
+  mutate(Year_Publication = if_else(Year_Publication>=1800, Year_Publication, NA)) %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE)
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+    ## Warning: Removed 370 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+
+    ## Warning: Removed 370 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](BGWork_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+``` r
+gutenberg %>%
+  mutate(Year_Publication = if_else(Year_Publication<=1800, Year_Publication, NA)) %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE)
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+    ## Warning: Removed 13118 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+
+    ## Warning: Removed 13118 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](BGWork_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+``` r
+gutenberg %>%
   ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
   geom_point() +
   geom_smooth(color = "black", se = FALSE)
@@ -213,7 +249,7 @@ gutenberg %>%
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](BGWork_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](BGWork_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ``` r
 gutenberg %>%
@@ -221,7 +257,7 @@ gutenberg %>%
   geom_jitter()
 ```
 
-![](BGWork_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](BGWork_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 ``` r
 gutenberg %>%
@@ -229,7 +265,7 @@ gutenberg %>%
   geom_bar(stat = "identity")
 ```
 
-![](BGWork_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](BGWork_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 ``` r
 gutenberg %>%
@@ -241,7 +277,7 @@ gutenberg %>%
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](BGWork_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](BGWork_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 ``` r
 gutenberg %>%
@@ -249,7 +285,7 @@ gutenberg %>%
   geom_boxplot()
 ```
 
-![](BGWork_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](BGWork_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 ``` r
 gutenberg17th <- gutenberg %>%
