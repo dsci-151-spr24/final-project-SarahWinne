@@ -1,5 +1,5 @@
 ---
-title: "Lexical Richness Over The 17-20th Centuries"
+title: "Lexical Richness Over The 17th-20th Centuries"
 subtitle: "Data from Project Gutenberg"
 author: "Sarah Winne"
 institute: "Houghton University"
@@ -41,21 +41,114 @@ style_xaringan(
 
 class: center, middle
 
-## How has lexical richness (variety in vocabulary) changed over the 17-20th centuries?
+## How has lexical richness changed over the 17th-20th centuries?
+
+---
+
+# Lexical Richness
+
+- The variety of vocabulary used
+
+- High lexical richness does not automatically make a book good
+
+--
+
+- Well known books like "To Kill a Mockingbird" or "Of Mice and Men" have simpler vocabularies
+
+- "Moby-Dick" and "The Book Thief" have much more extensive vocabularies
 
 ---
 
 class: inverse, center, middle
 
-# Section title
+# Limitations
 
 ---
 
-# Hello World
+# Gutenberg Project
+
+.pull-left[
+- Online archive of free e-books
+
+- Mostly older literary works with expired copyrights (in the US)
+
+- Lack of recent works 
+
+- Less 17th-18th century works than 19th-20th century works
+
+]
+.pull-right[
+```{r recode_gutenberg, echo = FALSE}
+gutenberg <- gutenberg %>%
+  mutate("century" = (floor(Year_Publication/100)*100)) %>%
+  mutate("decade" = (floor(Year_Publication/10)*10)) %>%
+  mutate("age_by10" = (floor(Age_Publication/10)*10))
+```
+
+```{r plot_gutenberg1, warning=FALSE, out.width="100%", fig.width=4, echo=FALSE}
+# see how I changed out.width and fig.width from defaults to make the figure bigger
+gutenberg %>%
+  mutate(Year_Publication = if_else(Year_Publication<=1800, Year_Publication, NA)) %>%
+  ggplot(mapping = aes(x = as_factor(century))) +
+  geom_bar()+
+  theme_minimal() +
+  labs(title = "Gutenberg's Collection",
+       x = "Century Published",
+       y = "E-Book Count")
+```
+]
+
+---
+
+class: inverse, center, middle
+
+# Lexical Richness Changes
+
+---
+
+# Overall Decrease
 
 - Click the `Knit` button to compile your presentation
 
 - Make sure to commit and push all resulting files to your GitHub repo
+
+---
+
+```{r plot-gutenberg2, echo = FALSE, message = FALSE}
+gutenberg %>%
+  ggplot(aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE) + 
+  guides(alpha = "none", color = "none") +
+  theme_minimal() + 
+  labs(title = "Lexical Richness over the Years", 
+       subtitle = "1635-1969",
+       x = "Year Published", 
+       y = "Lexical Richness")
+```
+
+---
+
+# Differences Over Centuries
+
+- Click the `Knit` button to compile your presentation
+
+- Make sure to commit and push all resulting files to your GitHub repo
+
+---
+
+```{r plot-gutenberg2, echo = FALSE, message = FALSE}
+gutenberg %>%
+  ggplot(aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", se = FALSE) + 
+  guides(alpha = "none", color = "none") +
+  theme_minimal() + 
+  labs(title = "Lexical Richness over the Years", 
+       subtitle = "1635-1969",
+       x = "Year Published", 
+       y = "Lexical Richness")
+```
 
 ---
 
