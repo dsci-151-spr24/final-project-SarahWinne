@@ -20,10 +20,68 @@ library(broom)
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
+    ##    Work_ID          Biodiversity_Richness Lexical_Richness Age_Publication
+    ##  Length:13493       Min.   :  0.45        Min.   : 726.3   Min.   :13.00  
+    ##  Class :character   1st Qu.:  8.42        1st Qu.:1659.8   1st Qu.:36.00  
+    ##  Mode  :character   Median : 12.39        Median :1834.4   Median :44.00  
+    ##                     Mean   : 14.27        Mean   :1855.9   Mean   :44.79  
+    ##                     3rd Qu.: 17.88        3rd Qu.:2038.2   3rd Qu.:52.00  
+    ##                     Max.   :113.39        Max.   :3915.2   Max.   :91.00  
+    ##                                                                           
+    ##  Year_Publication Literature_Form       Gender           Parenthood       
+    ##  Min.   :1635     Length:13493       Length:13493       Length:13493      
+    ##  1st Qu.:1881     Class :character   Class :character   Class :character  
+    ##  Median :1902     Mode  :character   Mode  :character   Mode  :character  
+    ##  Mean   :1893                                                             
+    ##  3rd Qu.:1915                                                             
+    ##  Max.   :1969                                                             
+    ##                                                                           
+    ##  Highest_Education  Biodiversity_Background Main_Region          Migrating    
+    ##  Length:13493       Length:13493            Length:13493       Min.   :1.000  
+    ##  Class :character   Class :character        Class :character   1st Qu.:1.000  
+    ##  Mode  :character   Mode  :character        Mode  :character   Median :1.000  
+    ##                                                                Mean   :1.424  
+    ##                                                                3rd Qu.:2.000  
+    ##                                                                Max.   :6.000  
+    ##                                                                NA's   :1185   
+    ##  Main_Residence     genre_satire    genre_historical genre_social   
+    ##  Length:13493       Mode :logical   Mode :logical    Mode :logical  
+    ##  Class :character   FALSE:13137     FALSE:10560      FALSE:7611     
+    ##  Mode  :character   TRUE :356       TRUE :2933       TRUE :5882     
+    ##                                                                     
+    ##                                                                     
+    ##                                                                     
+    ##                                                                     
+    ##  genre_children  genre_adventure genre_mystery   genre_crime    
+    ##  Mode :logical   Mode :logical   Mode :logical   Mode :logical  
+    ##  FALSE:11177     FALSE:11990     FALSE:12383     FALSE:12793    
+    ##  TRUE :2316      TRUE :1503      TRUE :1110      TRUE :700      
+    ##                                                                 
+    ##                                                                 
+    ##                                                                 
+    ##                                                                 
+    ##   genre_sf       genre_romance   genre_fantasy   genre_biography
+    ##  Mode :logical   Mode :logical   Mode :logical   Mode :logical  
+    ##  FALSE:13136     FALSE:12237     FALSE:12982     FALSE:13394    
+    ##  TRUE :357       TRUE :1256      TRUE :511       TRUE :99       
+    ##                                                                 
+    ##                                                                 
+    ##                                                                 
+    ##                                                                 
+    ##  genre_travellogue
+    ##  Mode :logical    
+    ##  FALSE:13468      
+    ##  TRUE :25         
+    ##                   
+    ##                   
+    ##                   
+    ## 
+
 ``` r
 gutenberg <- gutenberg %>%
   mutate("century" = (floor(Year_Publication/100)*100)) %>%
-  mutate("decade" = (floor(Year_Publication/10)*10))
+  mutate("decade" = (floor(Year_Publication/10)*10)) %>%
+  mutate("age_by10" = (floor(Age_Publication/10)*10))
 ```
 
 ``` r
@@ -122,3 +180,158 @@ gutenberg %>%
     ## `geom_smooth()` using formula = 'y ~ x'
 
 ![](BGWork_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = decade, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE) +
+  facet_wrap(~ age_by10)
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](BGWork_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE)
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](BGWork_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+``` r
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", se = FALSE)
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
+
+![](BGWork_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+``` r
+gutenberg %>%
+  ggplot(mapping = aes(x = Lexical_Richness, y = Literature_Form, color = century, alpha = .1)) +
+  geom_jitter()
+```
+
+![](BGWork_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+``` r
+gutenberg %>%
+  ggplot(mapping = aes(x = Lexical_Richness, y = Literature_Form, fill = century)) +
+  geom_bar(stat = "identity")
+```
+
+![](BGWork_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+``` r
+gutenberg %>%
+  ggplot(mapping = aes(x = Lexical_Richness, y = decade, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE) +
+  facet_wrap(~ Parenthood)
+```
+
+    ## `geom_smooth()` using formula = 'y ~ x'
+
+![](BGWork_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+``` r
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = decade, group = century, alpha = 0.1)) +
+  geom_boxplot()
+```
+
+![](BGWork_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+
+``` r
+gutenberg17th <- gutenberg %>%
+  mutate(century = if_else(century == 1600, century, NA)) %>%
+  drop_na(century)
+```
+
+``` r
+gutenberg18th <- gutenberg %>%
+  mutate(century = if_else(century == 1700, century, NA)) %>%
+  drop_na(century)
+```
+
+``` r
+gutenberg19th <- gutenberg %>%
+  mutate(century = if_else(century == 1800, century, NA)) %>%
+  drop_na(century)
+```
+
+``` r
+gutenberg20th <- gutenberg %>%
+  mutate(century = if_else(century == 1900, century, NA)) %>%
+  drop_na(century)
+```
+
+``` r
+stat <- gutenberg %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+```
+
+``` r
+stats17th <- gutenberg17th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+stats18th <- gutenberg18th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+stats19th <- gutenberg19th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+stats20th <- gutenberg20th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+```
+
+``` r
+stat
+```
+
+    ## # A tibble: 1 × 2
+    ##    mean median
+    ##   <dbl>  <dbl>
+    ## 1 1856.  1834.
+
+``` r
+stats17th
+```
+
+    ## # A tibble: 1 × 2
+    ##    mean median
+    ##   <dbl>  <dbl>
+    ## 1 1992.   1939
+
+``` r
+stats18th
+```
+
+    ## # A tibble: 1 × 2
+    ##    mean median
+    ##   <dbl>  <dbl>
+    ## 1 1995.  1984.
+
+``` r
+stats19th
+```
+
+    ## # A tibble: 1 × 2
+    ##    mean median
+    ##   <dbl>  <dbl>
+    ## 1 1895.  1872.
+
+``` r
+stats20th
+```
+
+    ## # A tibble: 1 × 2
+    ##    mean median
+    ##   <dbl>  <dbl>
+    ## 1 1818.  1801.

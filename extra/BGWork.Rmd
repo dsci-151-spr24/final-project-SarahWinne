@@ -14,12 +14,14 @@ library(broom)
 
 ```{r load-data, echo = FALSE}
 gutenberg <- read_csv("/cloud/project/data/ProjectGutenbergMetadata.csv")
+summary(gutenberg)
 ```
 
 ```{r}
 gutenberg <- gutenberg %>%
   mutate("century" = (floor(Year_Publication/100)*100)) %>%
-  mutate("decade" = (floor(Year_Publication/10)*10))
+  mutate("decade" = (floor(Year_Publication/10)*10)) %>%
+  mutate("age_by10" = (floor(Age_Publication/10)*10))
 ```
 
 ```{r}
@@ -50,4 +52,98 @@ gutenberg %>%
   geom_smooth(color = "black", method = "lm", se = FALSE) 
 ```
 
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = decade, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE) +
+  facet_wrap(~ age_by10)
+```
 
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE)
+```
+
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", se = FALSE)
+```
+
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(x = Lexical_Richness, y = Literature_Form, color = century, alpha = .1)) +
+  geom_jitter()
+```
+
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(x = Lexical_Richness, y = Literature_Form, fill = century)) +
+  geom_bar(stat = "identity")
+```
+
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(x = Lexical_Richness, y = decade, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE) +
+  facet_wrap(~ Parenthood)
+```
+
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = decade, group = century, alpha = 0.1)) +
+  geom_boxplot()
+```
+
+```{r}
+gutenberg17th <- gutenberg %>%
+  mutate(century = if_else(century == 1600, century, NA)) %>%
+  drop_na(century)
+```
+
+```{r}
+gutenberg18th <- gutenberg %>%
+  mutate(century = if_else(century == 1700, century, NA)) %>%
+  drop_na(century)
+```
+
+```{r}
+gutenberg19th <- gutenberg %>%
+  mutate(century = if_else(century == 1800, century, NA)) %>%
+  drop_na(century)
+```
+
+```{r}
+gutenberg20th <- gutenberg %>%
+  mutate(century = if_else(century == 1900, century, NA)) %>%
+  drop_na(century)
+```
+
+```{r}
+stat <- gutenberg %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+```
+
+```{r}
+stats17th <- gutenberg17th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+stats18th <- gutenberg18th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+stats19th <- gutenberg19th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+stats20th <- gutenberg20th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+```
+
+```{r}
+stat
+stats17th
+stats18th
+stats19th
+stats20th
+```
