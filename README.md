@@ -4,10 +4,15 @@ by Sarah Winne
 
 ## Summary
 
-A point to be highlighted before beginning, is that lexical richness, or
-variety of vocabulary, does not directly correlate to a good quality
-book. There are many well written books with a simple vocabulary, as
-well as ones with large vocabularies.
+A point to be highlighted before beginning, is that having high lexical
+richness, or a wide variety of vocabulary, does not directly correlate
+to a good quality book. In the same way, a smaller vocabulary, or less
+lexical richness, does not automatically mean low quality writing. There
+are many well written books with a simple vocabulary, as well as some
+books with large vocabularies being a nightmare to suffer through.
+Looking at the potential decline of lexical richness is not to say
+quality of writing has decreased, simply the use of a wider vocabulary
+having decreased.
 
 Basically, the form of literature, whether the author was a parent, and
 what decade or century they published in were the most helpful for
