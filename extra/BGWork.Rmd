@@ -1,0 +1,53 @@
+---
+title: Lexical Richness Over The 17-20th Centuries
+author: by Sarah Winne
+output: github_document
+---
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(broom)
+```
+
+## Scratch Work
+
+```{r load-data, echo = FALSE}
+gutenberg <- read_csv("/cloud/project/data/ProjectGutenbergMetadata.csv")
+```
+
+```{r}
+gutenberg <- gutenberg %>%
+  mutate("century" = (floor(Year_Publication/100)*100)) %>%
+  mutate("decade" = (floor(Year_Publication/10)*10))
+```
+
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(x = Lexical_Richness, y = decade, color = century, alpha = .1)) +
+  geom_point()
+```
+
+``` {r}
+fit1 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + decade, data = gutenberg)
+summary(fit1)
+```
+
+``` {r}
+fit2 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + century, data = gutenberg)
+summary(fit2)
+```
+
+``` {r}
+plot(fit1$residuals)
+plot(fit2$residuals)
+```
+
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = decade, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", method = "lm", se = FALSE) 
+```
+
+

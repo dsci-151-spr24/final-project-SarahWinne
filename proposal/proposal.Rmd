@@ -19,9 +19,7 @@ Each case is a unique book found in the Project Gutenberg digital library. There
 ## 2. Data
 
 ```{r echo=FALSE}
-data <- read_csv("ProjectGutenbergMetadata.csv", show_col_types = FALSE)
-
-# I couldn't figure out how to access the csv file in the data folder from the proposal folder. I tried read_csv("data/ProjectGutenbergMetadata.csv"), but it said it didn't exist in the current working directory. So I just made another copy of the csv file within the proposal folder.
+data <- read_csv("/cloud/project/data/ProjectGutenbergMetadata.csv", show_col_types = FALSE)
 ```
 
 ```{r echo=FALSE}
@@ -35,16 +33,17 @@ I will be using the year of publication to predict the lexical richness.
 I will likely be comparing by decade, then comparing ages to each other, and potentially also the author's highest level of education.
 
 ```{r echo=FALSE}
-data %>%
-  mutate("century" = (floor(Year_Publication/100)*100)) %>%
-  count(century)
+data <- data %>%
+  mutate("century" = (floor(Year_Publication/100)*100))
+
+count(data, century)
 ```
 Understanding how many publications that are in the Project Gutengerg collection from each century helps show how there are many more publications included that are in the 18-1900's, so my analysis might focus more where I have an abundance of data. 
 
 ```{r echo=FALSE}
 data %>%
   mutate("decade" = (floor(Year_Publication/10)*10)) %>%
-  ggplot(mapping = aes(x = Lexical_Richness, y = decade, alpha = .1)) +
+  ggplot(mapping = aes(x = Lexical_Richness, y = decade, color = century, alpha = .1)) +
   geom_point()
 ```
 
@@ -53,7 +52,7 @@ Graphing lexical richness against each decade gives a clearer look at how the ge
 ```{r echo=FALSE}
 data %>%
   mutate("decade" = (floor(Year_Publication/10)*10)) %>%
-  ggplot(mapping = aes(x = Lexical_Richness, y = decade, alpha = .1)) +
+  ggplot(mapping = aes(x = Lexical_Richness, y = decade, color = century, alpha = .1)) +
   geom_point() +
   facet_wrap(~Highest_Education)
 ```
@@ -62,7 +61,7 @@ data %>%
 data %>%
   mutate("decade" = (floor(Year_Publication/10)*10)) %>%
   mutate("age_by_decade" = floor(Age_Publication/10)) %>%
-  ggplot(mapping = aes(x = Lexical_Richness, y = decade, alpha = .1)) +
+  ggplot(mapping = aes(x = Lexical_Richness, y = decade, color = century, alpha = .1)) +
   geom_point() +
   facet_wrap(~age_by_decade)
 ```

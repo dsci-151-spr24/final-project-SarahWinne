@@ -1,7 +1,7 @@
 ---
-title: "Presentation title"
-subtitle: "Presentation subtitle (if any)"
-author: "Your Name"
+title: "Lexical Richness Over The 17-20th Centuries"
+subtitle: "Data from Project Gutenberg"
+author: "Sarah Winne"
 institute: "Houghton University"
 date: "`r Sys.Date()`"
 output:
@@ -30,19 +30,18 @@ knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618,
 ```
 
 ```{r load-data, include=FALSE}
-# Load your data here
+gutenberg <- read_csv("/cloud/project/data/ProjectGutenbergMetadata.csv")
 ```
 
-```{r}
+```{r include=FALSE}
 style_xaringan(
-  title_slide_background_image = "img/confetti.jpg"
+  title_slide_background_image = "/Users/sarahwinne/Documents/Houghton/DATA/BookBG.jpg"
 )
 ```
 
-
 class: center, middle
 
-## A statement of the overall goal / research question
+## How has lexical richness (variety in vocabulary) changed over the 17-20th centuries?
 
 ---
 

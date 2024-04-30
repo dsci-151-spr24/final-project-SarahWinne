@@ -1,5 +1,5 @@
 ---
-title: Project title
+title: Lexical Richness Over The 17-20th Centuries
 author: by Sarah Winne
 output: github_document
 ---
@@ -20,7 +20,7 @@ And make sure to hide your code with  `echo = FALSE` unless the point you are tr
 Your results with proper output and graphics go in your presentation, this space is for a brief summary of your project.
 
 ```{r load-data, echo = FALSE}
-# load data here, if you like
+gutenberg <- read_csv("/cloud/project/data/ProjectGutenbergMetadata.csv")
 ```
 
 ## Presentation
