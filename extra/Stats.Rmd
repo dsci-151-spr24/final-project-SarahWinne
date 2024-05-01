@@ -1,0 +1,88 @@
+---
+title: Lexical Richness Over The 17th-20th Centuries - Stats
+author: by Sarah Winne
+output: github_document
+---
+
+```{r load-packages, message = FALSE}
+library(tidyverse)
+library(tidymodels)
+library(broom)
+```
+
+## Scratch Work
+
+```{r load-data, echo = FALSE}
+gutenberg <- read_csv("/cloud/project/data/ProjectGutenbergMetadata.csv")
+summary(gutenberg)
+```
+
+```{r}
+gutenberg <- gutenberg %>%
+  mutate("century" = (floor(Year_Publication/100)*100)) %>%
+  mutate("decade" = (floor(Year_Publication/10)*10)) %>%
+  mutate("age_by10" = (floor(Age_Publication/10)*10))
+```
+
+``` {r}
+fit1 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + decade, data = gutenberg)
+summary(fit1)
+```
+
+``` {r}
+fit2 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + century, data = gutenberg)
+summary(fit2)
+```
+
+``` {r}
+plot(fit1$residuals)
+plot(fit2$residuals)
+```
+
+```{r}
+gutenberg17th <- gutenberg %>%
+  mutate(century = if_else(century == 1600, century, NA)) %>%
+  drop_na(century)
+```
+
+```{r}
+gutenberg18th <- gutenberg %>%
+  mutate(century = if_else(century == 1700, century, NA)) %>%
+  drop_na(century)
+```
+
+```{r}
+gutenberg19th <- gutenberg %>%
+  mutate(century = if_else(century == 1800, century, NA)) %>%
+  drop_na(century)
+```
+
+```{r}
+gutenberg20th <- gutenberg %>%
+  mutate(century = if_else(century == 1900, century, NA)) %>%
+  drop_na(century)
+```
+
+```{r}
+stat <- gutenberg %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+```
+
+```{r}
+stats17th <- gutenberg17th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+stats18th <- gutenberg18th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+stats19th <- gutenberg19th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+stats20th <- gutenberg20th %>%
+  summarise(mean = mean(Lexical_Richness), median = median(Lexical_Richness)) 
+```
+
+```{r}
+stat
+stats17th
+stats18th
+stats19th
+stats20th
+```
