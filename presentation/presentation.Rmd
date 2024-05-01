@@ -136,21 +136,30 @@ gutenberg %>%
 
 ---
 
-class: inverse, middle, center
+# Range
 
-# Using xaringan
+.pull-left[
+- Median lexical richness decreases
 
----
+- Upper range of lexical richness increases
 
-# xaringan
+- Overall quantity of e-books increases
+]
 
-- The presentation is created using the `xaringan` package
+.pull-right[
+```{r plot-gutenberg4, warning=FALSE, out.width="100%", fig.width=4, echo=FALSE, message = FALSE}
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = decade, group = century, alpha = 0.1)) +
+  geom_boxplot() +
+  theme_minimal() + 
+  guides(alpha = "none") +
+  labs(title = "Lexical Richness",
+       subtitle = " Split by Centuries", 
+       x = "Year Published", 
+       y = "Lexical Richness")
+```
+]
 
-- Use `---` to separate slides and `--` for incremental builds
-
---
-
-- Like this
 
 ---
 

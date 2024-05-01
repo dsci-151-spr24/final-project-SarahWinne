@@ -61,7 +61,8 @@ the words in prose. If using code, only one most important.
 
 ## Presentation
 
-My presentation can be found [here](presentation/presentation.html).
+My presentation can be found
+[here](/cloud/project/presentation/presentation.html).
 
 ## Data
 
