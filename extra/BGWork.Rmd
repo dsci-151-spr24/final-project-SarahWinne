@@ -1,5 +1,5 @@
 ---
-title: Lexical Richness Over The 17-20th Centuries
+title: Lexical Richness Over The 17th-20th Centuries
 author: by Sarah Winne
 output: github_document
 ---
@@ -85,6 +85,13 @@ gutenberg %>%
 
 ```{r}
 gutenberg %>%
+  mutate(Year_Publication = if_else(Year_Publication<=1800, Year_Publication, NA)) %>%
+  ggplot(mapping = aes(x = as_factor(century))) +
+  geom_bar()
+```
+
+```{r}
+gutenberg %>%
   ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
   geom_point() +
   geom_smooth(color = "black", se = FALSE)
@@ -100,6 +107,14 @@ gutenberg %>%
 gutenberg %>%
   ggplot(mapping = aes(x = Lexical_Richness, y = Literature_Form, fill = century)) +
   geom_bar(stat = "identity")
+```
+
+```{r}
+gutenberg %>%
+  ggplot(mapping = aes(y = Lexical_Richness, x = Year_Publication, color = century, alpha = .1)) +
+  geom_point() +
+  geom_smooth(color = "black", se = FALSE) +
+  facet_wrap(~Highest_Education)
 ```
 
 ```{r}
