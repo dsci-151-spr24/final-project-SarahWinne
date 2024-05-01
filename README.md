@@ -28,6 +28,16 @@ works. However, the dataset from the Gutenberg Project is large enough
 to ask the question of how lexical richness has changed over the past
 few centuries.
 
+Overall, there is a decreasing average lexical richness in the e-books
+in the Gutenberg Project as they progress towards works published in the
+20th century. Interestingly, this trend is not representative of the
+works if the dataset is split in the middle.
+
+Over the 17th-18th century books, which do have a much smaller sample
+size, the change in lexical richness is very small throughout. However,
+into the 19th century it begins dropping visibly as the sample size
+increases. This trend continues into the 20th century collection.
+
 Basically, the form of literature, whether the author was a parent, and
 what decade or century they published in were the most helpful for
 predicting lexical richness. Depending on the forms, lexical richness
