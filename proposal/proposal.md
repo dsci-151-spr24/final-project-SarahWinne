@@ -66,8 +66,8 @@ variables.
 
 I will be using the year of publication to predict the lexical richness.
 
-I will likely be comparing by decade, then comparing ages to each other,
-and potentially also the author’s highest level of education.
+I will be comparing by decade, then comparing ages to each other, and
+also the type of book written.
 
     ## # A tibble: 4 × 2
     ##   century     n
