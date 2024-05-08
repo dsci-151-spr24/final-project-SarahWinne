@@ -24,6 +24,18 @@ gutenberg <- gutenberg %>%
   mutate("age_by10" = (floor(Age_Publication/10)*10))
 ```
 
+```{r}
+gutenberg_a<- gutenberg %>%
+  mutate(century = if_else(century == 1600 | century == 1700, century, NA)) %>%
+  drop_na(century)
+```
+
+```{r}
+gutenberg_b <- gutenberg %>%
+  mutate(century = if_else(century == 1800 | century == 1900, century, NA)) %>%
+  drop_na(century)
+```
+
 ``` {r}
 fit1 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + decade, data = gutenberg)
 summary(fit1)
@@ -32,6 +44,16 @@ summary(fit1)
 ``` {r}
 fit2 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + century, data = gutenberg)
 summary(fit2)
+```
+
+``` {r}
+fit3 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + decade, data = gutenberg_a)
+summary(fit3)
+```
+
+``` {r}
+fit4 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + decade, data = gutenberg_b)
+summary(fit4)
 ```
 
 ``` {r}

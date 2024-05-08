@@ -89,6 +89,12 @@ gutenberg %>%
 
 ```{r}
 gutenberg %>%
+  ggplot(mapping = aes(y = century, fill = Literature_Form, color = Literature_Form)) +
+  geom_bar(position = "fill") 
+```
+
+```{r}
+gutenberg %>%
   ggplot(mapping = aes(x = Lexical_Richness, y = Literature_Form, fill = century)) +
   geom_bar(stat = "identity")
 ```
@@ -103,10 +109,10 @@ gutenberg %>%
 
 ```{r}
 gutenberg %>%
-  ggplot(mapping = aes(x = Lexical_Richness, y = decade, color = century, alpha = .1)) +
+  ggplot(mapping = aes(y = Lexical_Richness, x = decade, color = century, alpha = .1)) +
   geom_point() +
-  geom_smooth(color = "black", method = "lm", se = FALSE) +
-  facet_wrap(~ Parenthood)
+  geom_smooth(color = "black", se = FALSE) +
+  facet_wrap( ~ Parenthood)
 ```
 
 ```{r}

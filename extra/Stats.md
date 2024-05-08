@@ -85,6 +85,18 @@ gutenberg <- gutenberg %>%
 ```
 
 ``` r
+gutenberg_a<- gutenberg %>%
+  mutate(century = if_else(century == 1600 | century == 1700, century, NA)) %>%
+  drop_na(century)
+```
+
+``` r
+gutenberg_b <- gutenberg %>%
+  mutate(century = if_else(century == 1900 | century == 2000, century, NA)) %>%
+  drop_na(century)
+```
+
+``` r
 fit1 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + decade, data = gutenberg)
 summary(fit1)
 ```
@@ -151,16 +163,82 @@ summary(fit2)
     ## F-statistic: 176.5 on 8 and 5398 DF,  p-value: < 2.2e-16
 
 ``` r
+fit3 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + decade, data = gutenberg_a)
+summary(fit3)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = Lexical_Richness ~ Literature_Form + Parenthood + 
+    ##     decade, data = gutenberg_a)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -691.52 -166.19  -18.47  145.82 1323.99 
+    ## 
+    ## Coefficients:
+    ##                                      Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)                        1937.90109  821.41526   2.359   0.0193 *  
+    ## Literature_Formepic_art_novel        59.33712   50.40313   1.177   0.2405    
+    ## Literature_Formepic_art_novella    -125.57155  144.88453  -0.867   0.3872    
+    ## Literature_Formepic_art_shortstory -149.77789  108.59244  -1.379   0.1694    
+    ## Literature_Formepic_art_tale        380.88093   94.98454   4.010 8.65e-05 ***
+    ## Literature_Formlyric_art            578.73604   57.86678  10.001  < 2e-16 ***
+    ## Literature_Formnonfiction           316.09379   79.31203   3.985 9.51e-05 ***
+    ## Parenthoodhas_no_children            21.06228   42.15923   0.500   0.6179    
+    ## decade                               -0.08538    0.47259  -0.181   0.8568    
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 277 on 195 degrees of freedom
+    ##   (166 observations deleted due to missingness)
+    ## Multiple R-squared:  0.4264, Adjusted R-squared:  0.4028 
+    ## F-statistic: 18.12 on 8 and 195 DF,  p-value: < 2.2e-16
+
+``` r
+fit4 <- lm(Lexical_Richness ~ Literature_Form + Parenthood + decade, data = gutenberg_b)
+summary(fit4)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = Lexical_Richness ~ Literature_Form + Parenthood + 
+    ##     decade, data = gutenberg_b)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -789.01 -164.41   -9.65  162.52  945.97 
+    ## 
+    ## Coefficients:
+    ##                                     Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept)                        4208.7516   712.3833   5.908 3.93e-09 ***
+    ## Literature_Formepic_art_novel       287.2083    28.4058  10.111  < 2e-16 ***
+    ## Literature_Formepic_art_novella     178.6761    43.3858   4.118 3.94e-05 ***
+    ## Literature_Formepic_art_shortstory  313.2742    31.1877  10.045  < 2e-16 ***
+    ## Literature_Formepic_art_tale         38.4124    79.3030   0.484 0.628162    
+    ## Literature_Formlyric_art            575.6346    38.8551  14.815  < 2e-16 ***
+    ## Literature_Formnonfiction           628.5395    33.4851  18.771  < 2e-16 ***
+    ## Parenthoodhas_no_children            -2.1898    14.5904  -0.150 0.880710    
+    ## decade                               -1.4172     0.3725  -3.805 0.000145 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 245.5 on 2542 degrees of freedom
+    ##   (4807 observations deleted due to missingness)
+    ## Multiple R-squared:  0.1874, Adjusted R-squared:  0.1848 
+    ## F-statistic: 73.27 on 8 and 2542 DF,  p-value: < 2.2e-16
+
+``` r
 plot(fit1$residuals)
 ```
 
-![](Stats_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](Stats_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
 plot(fit2$residuals)
 ```
 
-![](Stats_files/figure-gfm/unnamed-chunk-4-2.png)<!-- -->
+![](Stats_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
 
 ``` r
 gutenberg17th <- gutenberg %>%
