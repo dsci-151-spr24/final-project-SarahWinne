@@ -73,11 +73,6 @@ pretty constant. It should be remembered that the dataset from Project
 Gutenberg has fewer books from that time period, as compared to the
 19th-20th centuries.
 
-Write-up of your project and findings go here. Think of this as the text
-of your presentation. Roughly 750 words. As long as you’re in the
-ballpark of 750 words, you’re good! Ignore code chunks and only count
-the words in prose. If using code, only one most important.
-
 ## Presentation
 
 My presentation can be found [here](presentation/presentation.html).
